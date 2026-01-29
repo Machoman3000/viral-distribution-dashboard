@@ -1,0 +1,285 @@
+@import "tailwindcss";
+
+/* MonadRefGraph Design System */
+@theme inline {
+  /* Colors */
+  --color-monad-purple: #836EFB;
+  --color-monad-purple-dim: #836EFB80;
+  --color-monad-black: #000000;
+  --color-monad-dark: #0A0A0A;
+  --color-monad-gray: #1A1A1A;
+  --color-monad-white: #FFFFFF;
+  --color-monad-border: #333333;
+  --color-terminal-green: #4AF626;
+  --color-terminal-red: #FF4444;
+  --color-terminal-yellow: #FFD700;
+
+  /* Typography */
+  --font-display: "Chakra Petch", sans-serif;
+  --font-body: "Space Grotesk", sans-serif;
+  --font-mono: "Space Mono", monospace;
+}
+
+/* Base styles */
+html {
+  background: #000000;
+}
+
+body {
+  background: #0A0A0A;
+  color: #FFFFFF;
+  font-family: "Space Grotesk", sans-serif;
+  min-height: 100vh;
+}
+
+/* Grid background pattern */
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(131, 110, 251, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(131, 110, 251, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Angled grid pattern */
+.grid-pattern-angled {
+  background-image:
+    linear-gradient(45deg, rgba(131, 110, 251, 0.02) 1px, transparent 1px),
+    linear-gradient(-45deg, rgba(131, 110, 251, 0.02) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+/* Scanline animation */
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+.scanline::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #836EFB, transparent);
+  animation: scanline 8s linear infinite;
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Glitch button effect */
+.glitch-button {
+  position: relative;
+  transition: all 0.15s ease;
+}
+
+.glitch-button:hover {
+  box-shadow:
+    2px 2px 0 #836EFB,
+    -2px -2px 0 #4AF626;
+  transform: translate(-1px, -1px);
+}
+
+.glitch-button:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+/* Pixel corner decorations */
+.pixel-corners {
+  position: relative;
+}
+
+.pixel-corners::before,
+.pixel-corners::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #836EFB;
+}
+
+.pixel-corners::before {
+  top: -1px;
+  left: -1px;
+}
+
+.pixel-corners::after {
+  bottom: -1px;
+  right: -1px;
+}
+
+/* Additional corner spans needed via JS/component */
+.pixel-corner-tr {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 6px;
+  height: 6px;
+  background: #836EFB;
+}
+
+.pixel-corner-bl {
+  position: absolute;
+  bottom: -1px;
+  left: -1px;
+  width: 6px;
+  height: 6px;
+  background: #836EFB;
+}
+
+/* Terminal log styles */
+.terminal-log {
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.terminal-log .timestamp {
+  color: #666666;
+}
+
+.terminal-log .prefix {
+  color: #836EFB;
+}
+
+.terminal-log .event-revenue {
+  color: #4AF626;
+}
+
+.terminal-log .event-system {
+  color: #836EFB;
+}
+
+.terminal-log .event-user {
+  color: #FFD700;
+}
+
+.terminal-log .event-error {
+  color: #FF4444;
+}
+
+/* Pulse animation for status indicators */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.status-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333333;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #836EFB;
+}
+
+/* Input styles */
+input, textarea, select {
+  background: #0A0A0A;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #836EFB;
+}
+
+input::placeholder, textarea::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Range slider styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-track {
+  height: 4px;
+  background: #333333;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #836EFB;
+  margin-top: -6px;
+}
+
+input[type="range"]::-moz-range-track {
+  height: 4px;
+  background: #333333;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #836EFB;
+  border: none;
+}
+
+/* Card hover effect */
+.card-hover {
+  transition: all 0.2s ease;
+}
+
+.card-hover:hover {
+  border-color: rgba(131, 110, 251, 0.5);
+  box-shadow: 0 0 20px rgba(131, 110, 251, 0.1);
+}
+
+/* Text gradient for emphasis */
+.text-gradient {
+  background: linear-gradient(135deg, #836EFB, #4AF626);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Underline accent */
+.underline-accent {
+  position: relative;
+}
+
+.underline-accent::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #836EFB;
+}

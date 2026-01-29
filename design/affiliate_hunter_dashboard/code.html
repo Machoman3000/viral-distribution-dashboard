@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Affiliate Hunter Dashboard V2</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "monad-purple": "#885FFF",
+                        "monad-purple-light": "#A78BFA",
+                        "monad-black": "#000000",
+                        "monad-dark": "#0A0A0A",
+                        "monad-white": "#FFFFFF",
+                        "monad-border": "#333333",
+                        "terminal-green": "#4AF626",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "mono": ["Space Mono", "monospace"],
+                    },
+                    borderRadius: {
+                        'none': '0',
+                        'sm': '0',
+                        DEFAULT: '0',
+                        'md': '0',
+                        'lg': '0',
+                        'xl': '0',
+                        '2xl': '0',
+                        '3xl': '0',
+                        'full': '0', 
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #222 1px, transparent 1px), linear-gradient(to bottom, #222 1px, transparent 1px)",
+                    }
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .no-scrollbar::-webkit-scrollbar {
+                display: none;
+            }
+            .no-scrollbar {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            .terminal-text {
+                @apply font-mono tracking-tight;
+            }::-webkit-scrollbar {
+                width: 6px;
+                height: 6px;
+            }
+            ::-webkit-scrollbar-track {
+                background: #000; 
+            }
+            ::-webkit-scrollbar-thumb {
+                background: #333; 
+            }
+            ::-webkit-scrollbar-thumb:hover {
+                background: #885FFF; 
+            }
+        }
+    </style>
+</head>
+<body class="bg-monad-black text-monad-white font-display overflow-hidden antialiased selection:bg-monad-purple selection:text-white">
+<div class="flex h-screen w-full overflow-hidden">
+<aside class="w-64 flex-shrink-0 bg-white text-black flex flex-col z-30 border-r border-monad-border relative">
+<div class="h-16 flex items-center px-6 border-b border-gray-200">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-monad-purple flex items-center justify-center">
+<span class="text-white font-bold text-lg font-mono">M</span>
+</div>
+<span class="text-lg font-bold tracking-tight uppercase">MonadRef</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto py-8 px-0 flex flex-col gap-1">
+<div class="px-6 mb-4 text-[10px] font-mono uppercase tracking-widest text-gray-500">Main_Module</div>
+<a class="flex items-center gap-4 px-6 py-3 bg-monad-purple text-white group relative" href="#">
+<div class="w-1 h-full absolute left-0 top-0 bg-black"></div>
+<svg class="w-5 h-5 fill-current" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 2H10V4H4V10H2V2ZM2 22H10V20H4V14H2V22ZM22 22H14V20H20V14H22V22ZM22 2H14V4H20V10H22V2Z"></path>
+<rect height="4" width="4" x="10" y="10"></rect>
+</svg>
+<span class="font-bold font-mono text-sm tracking-tight">DASHBOARD</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-gray-600 hover:bg-gray-100 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px]">hub</span>
+<span class="font-bold font-mono text-sm tracking-tight">NETWORK</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-gray-600 hover:bg-gray-100 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px]">link</span>
+<span class="font-bold font-mono text-sm tracking-tight">LINKS</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-gray-600 hover:bg-gray-100 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px]">wallet</span>
+<span class="font-bold font-mono text-sm tracking-tight">WALLET</span>
+</a>
+</div>
+<div class="p-6 border-t border-gray-200">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-black text-white flex items-center justify-center font-mono text-xs border-2 border-transparent hover:border-monad-purple transition-colors cursor-pointer">
+                    0x71
+                </div>
+<div class="flex flex-col">
+<span class="text-sm font-bold font-mono">0x71...3A9</span>
+<span class="text-[10px] uppercase tracking-wider text-monad-purple font-bold">Tier 2</span>
+</div>
+</div>
+</div>
+</aside>
+<main class="flex-1 relative flex flex-col h-full overflow-hidden bg-monad-black">
+<div class="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none z-0 bg-[length:40px_40px]"></div>
+<header class="h-16 flex items-center justify-between px-8 border-b border-white/10 z-10 bg-monad-black/80 backdrop-blur-sm">
+<h1 class="text-xl font-bold text-white uppercase tracking-widest flex items-center gap-2">
+<span class="w-2 h-2 bg-monad-purple"></span>
+                Hunter_Dashboard_v2
+            </h1>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 text-xs font-mono text-gray-400">
+<span class="w-2 h-2 bg-terminal-green animate-pulse"></span>
+                    SYSTEM_ONLINE
+                </div>
+<button class="w-8 h-8 flex items-center justify-center border border-white/20 hover:bg-white hover:text-black transition-colors">
+<span class="material-symbols-outlined text-[18px]">notifications</span>
+</button>
+</div>
+</header>
+<div class="flex-1 overflow-y-auto p-8 z-10 scroll-smooth">
+<div class="max-w-7xl mx-auto flex flex-col gap-8">
+<div class="w-full border border-white/20 p-1 bg-monad-dark relative group">
+<div class="absolute -top-[1px] -left-[1px] w-4 h-4 border-l border-t border-monad-purple z-20"></div>
+<div class="absolute -top-[1px] -right-[1px] w-4 h-4 border-r border-t border-monad-purple z-20"></div>
+<div class="absolute -bottom-[1px] -left-[1px] w-4 h-4 border-l border-b border-monad-purple z-20"></div>
+<div class="absolute -bottom-[1px] -right-[1px] w-4 h-4 border-r border-b border-monad-purple z-20"></div>
+<div class="relative w-full aspect-[24/9] bg-black overflow-hidden border border-white/5">
+<div class="absolute inset-0 bg-cover bg-center opacity-60 mix-blend-screen grayscale contrast-125" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuArn5JoorQkB2hBhZH70TLEndLia1cwdeIuojOX4GJj85aEXHegkejEfNojnXJtq0nSz5YtO2u94XSlbch2F7zSglVormc-_SOwvL5uv3ftymR42-xZppjWjYXSat0AQCugESNqIcvWZLJUpVBRy79Ac_9Ci9jA-AbTn6omsv4tmC-sXJF5DBuc6NLQdHovqCagULPdGz2xh0GvFdTjlmHJyYneDm9dPayy9QUGY0JqIr5WCN_bsrNAPZVb5J59s6q84TUHf6JXQ2Mx");'>
+</div>
+<div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMGg0MHY0MEgwVjB6bTEgMWgzOHYzOEgxVjF6IiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoMTMyLDkzLDI0OSwwLjEpIiBzdHJva2Utd2lkdGg9IjEiLz48L3N2Zz4=')] opacity-30"></div>
+<div class="absolute top-0 left-0 p-6">
+<h2 class="text-2xl font-bold font-mono text-white mb-1 uppercase">Bonding_Graph<span class="animate-pulse">_</span></h2>
+<p class="text-xs font-mono text-monad-purple">VISUALIZING LINEAGE // ON-CHAIN</p>
+</div>
+<div class="absolute bottom-6 right-6 flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-black border border-white/30 text-white text-xs font-mono hover:bg-white hover:text-black transition-colors uppercase">
+<span class="material-symbols-outlined text-[14px]">zoom_out_map</span>
+                                EXPAND
+                            </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-monad-purple text-white text-xs font-mono hover:bg-white hover:text-monad-purple transition-colors uppercase font-bold">
+                                SHARE_GRAPH
+                            </button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-monad-dark border border-white/10 p-6 flex flex-col justify-between min-h-[160px] relative hover:border-monad-purple transition-colors group">
+<div class="flex justify-between items-start mb-4">
+<div class="text-gray-400 text-xs font-mono uppercase tracking-widest">Total Earnings</div>
+<svg class="w-8 h-8 text-monad-purple" fill="currentColor" viewBox="0 0 24 24">
+<path d="M2 4h20v2H2V4zm2 4h16v2H4V8zm2 4h12v2H6v-2zm-2 4h16v2H4v-2zm-2 4h20v2H2v-2z"></path>
+</svg>
+</div>
+<div>
+<div class="text-3xl font-mono font-bold text-white mb-1 group-hover:text-monad-purple transition-colors">450.2 <span class="text-base text-gray-500">MON</span></div>
+<div class="flex items-center gap-2 text-xs font-mono">
+<span class="text-terminal-green">▲ 12.5%</span>
+<span class="text-gray-600">≈ 12,040 USDC</span>
+</div>
+</div>
+</div>
+<div class="bg-monad-dark border border-white/10 p-6 flex flex-col justify-between min-h-[160px] relative hover:border-monad-purple transition-colors group">
+<div class="flex justify-between items-start mb-4">
+<div class="text-gray-400 text-xs font-mono uppercase tracking-widest">Direct Referrals (T1)</div>
+<svg class="w-8 h-8 text-white group-hover:text-monad-purple transition-colors" fill="currentColor" viewBox="0 0 24 24">
+<path d="M4 2h16v4H4V2zm4 4h8v4H8V6zm-6 8h20v2H2v-2zm2 4h16v2H4v-2zm-2 4h20v2H2v-2z"></path>
+</svg>
+</div>
+<div>
+<div class="text-3xl font-mono font-bold text-white mb-1">142</div>
+<div class="flex items-center gap-2 text-xs font-mono">
+<span class="text-terminal-green">▲ 5%</span>
+<span class="text-gray-600">Active Hunters</span>
+</div>
+</div>
+</div>
+<div class="bg-monad-dark border border-white/10 p-6 flex flex-col justify-between min-h-[160px] relative hover:border-monad-purple transition-colors group">
+<div class="flex justify-between items-start mb-4">
+<div class="text-gray-400 text-xs font-mono uppercase tracking-widest">Network Refs (T2)</div>
+<svg class="w-8 h-8 text-white group-hover:text-monad-purple transition-colors" fill="currentColor" viewBox="0 0 24 24">
+<rect height="6" width="6" x="2" y="2"></rect>
+<rect height="6" width="6" x="16" y="2"></rect>
+<rect height="6" width="6" x="9" y="16"></rect>
+<path d="M11 8h2v8h-2z"></path>
+<path d="M5 8h2v4h4v2H5z"></path>
+<path d="M19 8h-2v4h-4v2h6z"></path>
+</svg>
+</div>
+<div>
+<div class="text-3xl font-mono font-bold text-white mb-1">890</div>
+<div class="flex items-center gap-2 text-xs font-mono">
+<span class="text-terminal-green">▲ 22%</span>
+<span class="text-gray-600">Indirect Users</span>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+<div class="xl:col-span-2 bg-monad-dark border border-white/10 flex flex-col">
+<div class="p-6 border-b border-white/10 flex justify-between items-center bg-white/5">
+<div>
+<h3 class="text-lg font-bold text-white uppercase tracking-wider">Link_Arsenal</h3>
+</div>
+<button class="px-4 py-2 border border-monad-purple text-monad-purple hover:bg-monad-purple hover:text-white transition-colors text-xs font-mono uppercase font-bold">
+                                + Create_Link
+                            </button>
+</div>
+<div class="p-6">
+<div class="mb-8 p-6 bg-black border border-white/10 flex flex-col md:flex-row gap-4 items-end">
+<div class="flex-1 w-full">
+<label class="block text-xs font-mono text-gray-500 mb-2 uppercase">Target App</label>
+<select class="w-full bg-monad-dark border border-white/20 text-white text-sm font-mono py-2 px-3 focus:ring-0 focus:border-monad-purple rounded-none appearance-none">
+<option>MonadSwap DEX</option>
+<option>LendProtocol</option>
+<option>NFT Marketplace</option>
+</select>
+</div>
+<div class="flex-1 w-full">
+<label class="block text-xs font-mono text-gray-500 mb-2 uppercase">Custom Slug</label>
+<div class="flex border border-white/20 bg-monad-dark focus-within:border-monad-purple">
+<span class="px-3 py-2 text-gray-500 text-sm font-mono border-r border-white/10 bg-black">monad.ref/</span>
+<input class="w-full bg-transparent border-none text-white text-sm font-mono py-2 px-3 focus:ring-0 placeholder-gray-700" placeholder="your-tag" type="text"/>
+</div>
+</div>
+<button class="px-6 py-2 bg-white text-black font-mono text-sm font-bold uppercase hover:bg-monad-purple hover:text-white transition-colors">
+                                    Generate
+                                </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-white/10">
+<th class="py-3 px-2 text-xs font-mono text-gray-500 uppercase">Application</th>
+<th class="py-3 px-2 text-xs font-mono text-gray-500 uppercase">Slug</th>
+<th class="py-3 px-2 text-xs font-mono text-gray-500 uppercase text-right">Clicks</th>
+<th class="py-3 px-2 text-xs font-mono text-gray-500 uppercase text-right">Rev.</th>
+<th class="py-3 px-2 text-xs font-mono text-gray-500 uppercase text-right">Opt</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5 font-mono text-sm">
+<tr class="group hover:bg-white/5 transition-colors">
+<td class="py-4 px-2 font-bold text-white">MonadSwap</td>
+<td class="py-4 px-2 text-gray-400">monad.ref/swap-alpha</td>
+<td class="py-4 px-2 text-right">1,240</td>
+<td class="py-4 px-2 text-right text-monad-purple">340.5</td>
+<td class="py-4 px-2 text-right">
+<button class="text-gray-500 hover:text-white material-symbols-outlined text-sm">content_copy</button>
+</td>
+</tr>
+<tr class="group hover:bg-white/5 transition-colors">
+<td class="py-4 px-2 font-bold text-white">MemeLauncher</td>
+<td class="py-4 px-2 text-gray-400">monad.ref/degen-king</td>
+<td class="py-4 px-2 text-right">856</td>
+<td class="py-4 px-2 text-right text-monad-purple">109.7</td>
+<td class="py-4 px-2 text-right">
+<button class="text-gray-500 hover:text-white material-symbols-outlined text-sm">content_copy</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="bg-monad-dark border border-white/10 flex flex-col h-full">
+<div class="p-6 border-b border-white/10 bg-white/5">
+<h3 class="text-lg font-bold text-white uppercase tracking-wider">Terminal_Log</h3>
+</div>
+<div class="p-4 flex-1 overflow-y-auto font-mono text-xs">
+<div class="flex flex-col gap-4">
+<div class="flex gap-3">
+<span class="text-gray-600 w-16 shrink-0">10:42:05</span>
+<div class="flex flex-col">
+<span class="text-terminal-green font-bold">&gt;&gt; REVENUE_EVENT</span>
+<span class="text-gray-300">0x4a...92 swapped 500 MON. <span class="text-monad-purple">+0.5 MON earned</span>.</span>
+</div>
+</div>
+<div class="flex gap-3">
+<span class="text-gray-600 w-16 shrink-0">10:30:00</span>
+<div class="flex flex-col">
+<span class="text-blue-400 font-bold">&gt;&gt; SYSTEM_LOG</span>
+<span class="text-gray-300">New referral link generated: <span class="text-white">LendProtocol</span></span>
+</div>
+</div>
+<div class="flex gap-3">
+<span class="text-gray-600 w-16 shrink-0">09:15:22</span>
+<div class="flex flex-col">
+<span class="text-monad-purple font-bold">&gt;&gt; USER_JOIN</span>
+<span class="text-gray-300">0x8b...11 joined via <span class="text-white">MemeLauncher</span>.</span>
+</div>
+</div>
+<div class="flex gap-3">
+<span class="text-gray-600 w-16 shrink-0">08:00:00</span>
+<div class="flex flex-col">
+<span class="text-gray-500 font-bold">&gt;&gt; SNAPSHOT</span>
+<span class="text-gray-400">Daily tier volume calculation completed.</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-3 border-t border-white/10 bg-black">
+<div class="flex items-center gap-2 text-gray-500 text-xs font-mono">
+<span class="w-2 h-4 bg-monad-purple animate-pulse"></span>
+<span>Awaiting input...</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>
