@@ -23,12 +23,14 @@ export default function EarningsCard({
   claimable,
 }: EarningsCardProps) {
   const [isClaiming, setIsClaiming] = useState(false);
+  const [claimSuccess, setClaimSuccess] = useState(false);
 
   const handleClaim = async () => {
     setIsClaiming(true);
     await new Promise((resolve) => setTimeout(resolve, 2000));
-    alert("Claim submitted!");
     setIsClaiming(false);
+    setClaimSuccess(true);
+    setTimeout(() => setClaimSuccess(false), 3000);
   };
 
   return (
@@ -79,7 +81,11 @@ export default function EarningsCard({
 
         {/* Claim Button */}
         <div className="mt-6">
-          {claimable === 0 ? (
+          {claimSuccess ? (
+            <p className="text-terminal-green font-[family-name:var(--font-mono)] text-sm text-center py-2">
+              ✓ Claim submitted successfully!
+            </p>
+          ) : claimable === 0 ? (
             <p className="text-white/40 font-[family-name:var(--font-body)] text-sm text-center">
               No rewards to claim yet
             </p>

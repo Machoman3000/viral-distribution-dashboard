@@ -35,14 +35,14 @@ export default function AppHubLayout({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-[calc(100vh-4rem)]">
       {/* Sidebar */}
-      <aside className="w-64 border-r border-white/10 bg-monad-dark/50">
+      <aside className="w-64 border-r border-white/10 bg-monad-dark/50" aria-label="App Hub sidebar">
         <div className="p-6">
           <h2 className="font-[family-name:var(--font-display)] text-xl font-bold uppercase tracking-tight mb-6">
             <span className="text-white">App</span>
             <span className="text-monad-purple">Hub</span>
           </h2>
 
-          <nav className="space-y-1">
+          <nav className="space-y-1" aria-label="App Hub navigation">
             <NavLink href="/app-hub" exact>
               Overview
             </NavLink>

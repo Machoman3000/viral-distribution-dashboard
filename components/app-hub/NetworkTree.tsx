@@ -14,31 +14,31 @@ export default function NetworkTree({
   directReferrals,
   indirectReferrals,
 }: NetworkTreeProps) {
-  const renderReferralList = (referrals: string[]) => {
+  const renderReferralList = (referrals: string[], label: string) => {
     const displayedReferrals = referrals.slice(0, 5);
     const remainingCount = referrals.length - 5;
 
     return (
-      <div className="space-y-2">
+      <ul className="space-y-2 list-none" aria-label={label}>
         {displayedReferrals.map((address) => (
-          <div
+          <li
             key={address}
             className="font-[family-name:var(--font-mono)] text-sm text-white/70"
           >
             {truncateAddress(address)}
-          </div>
+          </li>
         ))}
         {remainingCount > 0 && (
-          <div className="font-[family-name:var(--font-mono)] text-sm text-white/50">
+          <li className="font-[family-name:var(--font-mono)] text-sm text-white/50">
             +{remainingCount} more
-          </div>
+          </li>
         )}
         {referrals.length === 0 && (
-          <div className="font-[family-name:var(--font-mono)] text-sm text-white/40">
+          <li className="font-[family-name:var(--font-mono)] text-sm text-white/40">
             No referrals yet
-          </div>
+          </li>
         )}
-      </div>
+      </ul>
     );
   };
 
@@ -61,7 +61,7 @@ export default function NetworkTree({
           <div className="text-2xl font-bold text-white mb-3">
             {directReferrals.length}
           </div>
-          {renderReferralList(directReferrals)}
+          {renderReferralList(directReferrals, "Direct referral addresses")}
         </div>
 
         {/* Indirect Referrals Column */}
@@ -75,7 +75,7 @@ export default function NetworkTree({
           <div className="text-2xl font-bold text-white mb-3">
             {indirectReferrals.length}
           </div>
-          {renderReferralList(indirectReferrals)}
+          {renderReferralList(indirectReferrals, "Indirect referral addresses")}
         </div>
       </div>
     </PixelCard>
