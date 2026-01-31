@@ -20,9 +20,9 @@ export default function NetworkTree({
 
     return (
       <div className="space-y-2">
-        {displayedReferrals.map((address, index) => (
+        {displayedReferrals.map((address) => (
           <div
-            key={index}
+            key={address}
             className="font-[family-name:var(--font-mono)] text-sm text-white/70"
           >
             {truncateAddress(address)}

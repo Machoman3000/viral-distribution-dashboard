@@ -64,9 +64,10 @@ export default function ReferralLinks({
 
               <button
                 onClick={() => copyToClipboard(project.id, refLink)}
+                aria-label={`Copy referral link for ${project.name}`}
                 className={`
                   px-4 py-2 font-[family-name:var(--font-mono)] text-xs uppercase tracking-wider
-                  transition-colors duration-150
+                  transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-monad-purple focus-visible:outline-offset-2
                   ${
                     isCopied
                       ? "bg-terminal-green text-monad-black"
