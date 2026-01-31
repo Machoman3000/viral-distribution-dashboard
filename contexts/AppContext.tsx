@@ -7,6 +7,10 @@ interface PayoutConfig {
   tier0Rebate: number;
   tier1Hunter: number;
   tier2Manager: number;
+  // Revenue share limits
+  limitType: 'time' | 'volume' | 'transactions';
+  limitValue: number;
+  afterLimitBehavior: 'stop' | 'reduceRebate' | 'reduce50';
 }
 
 interface AppRegistration {
@@ -37,6 +41,9 @@ const defaultPayoutConfig: PayoutConfig = {
   tier0Rebate: 10,
   tier1Hunter: 10,
   tier2Manager: 5,
+  limitType: 'time',
+  limitValue: 90,
+  afterLimitBehavior: 'stop',
 };
 
 const AppContext = createContext<AppContextType | undefined>(undefined);

@@ -13,7 +13,7 @@ export default function ConfigurePage() {
   const { payoutConfig, setPayoutConfig, appRegistration } = useApp();
   const [showPreview, setShowPreview] = useState(false);
 
-  const { totalMargin, tier0Rebate, tier1Hunter, tier2Manager } = payoutConfig;
+  const { totalMargin, tier0Rebate, tier1Hunter, tier2Manager, limitType, limitValue, afterLimitBehavior } = payoutConfig;
 
   // Calculate remaining margin for each tier
   const usedMargin = tier0Rebate + tier1Hunter + tier2Manager;
@@ -166,6 +166,72 @@ export default function ConfigurePage() {
             color="yellow"
           />
         </div>
+
+        {/* Revenue Share Limits */}
+        <PixelCard className="mb-8">
+          <div className="mb-6">
+            <h3 className="font-[family-name:var(--font-display)] text-lg font-bold uppercase tracking-tight mb-1">
+              Revenue Share Limits
+            </h3>
+            <p className="text-white/40 text-sm font-[family-name:var(--font-body)]">
+              Define when revenue sharing ends for each user.
+            </p>
+          </div>
+
+          {/* Limit Type */}
+          <div className="mb-6">
+            <label className="block font-[family-name:var(--font-mono)] text-xs text-white/60 uppercase tracking-wider mb-2">
+              Limit Type
+            </label>
+            <div className="flex gap-2">
+              {(['time', 'volume', 'transactions'] as const).map((type) => (
+                <button
+                  key={type}
+                  onClick={() => setPayoutConfig({ ...payoutConfig, limitType: type })}
+                  className={`px-4 py-2 font-[family-name:var(--font-mono)] text-sm uppercase tracking-wider transition-colors ${
+                    limitType === type
+                      ? 'bg-monad-purple text-white'
+                      : 'bg-monad-gray text-white/60 hover:text-white'
+                  }`}
+                >
+                  {type}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Limit Value */}
+          <div className="mb-6">
+            <label className="block font-[family-name:var(--font-mono)] text-xs text-white/60 uppercase tracking-wider mb-2">
+              {limitType === 'time' && 'Days after user joins'}
+              {limitType === 'volume' && 'Fee volume (USD)'}
+              {limitType === 'transactions' && 'Number of transactions'}
+            </label>
+            <input
+              type="number"
+              value={limitValue}
+              onChange={(e) => setPayoutConfig({ ...payoutConfig, limitValue: parseInt(e.target.value) || 0 })}
+              className="w-full px-4 py-3 bg-monad-black border border-white/20 text-white font-[family-name:var(--font-mono)] focus:border-monad-purple focus:outline-none"
+              min={0}
+            />
+          </div>
+
+          {/* After Limit Behavior */}
+          <div>
+            <label className="block font-[family-name:var(--font-mono)] text-xs text-white/60 uppercase tracking-wider mb-2">
+              After Limit Behavior
+            </label>
+            <select
+              value={afterLimitBehavior}
+              onChange={(e) => setPayoutConfig({ ...payoutConfig, afterLimitBehavior: e.target.value as 'stop' | 'reduceRebate' | 'reduce50' })}
+              className="w-full px-4 py-3 bg-monad-black border border-white/20 text-white font-[family-name:var(--font-mono)] focus:border-monad-purple focus:outline-none cursor-pointer"
+            >
+              <option value="stop">Stop all sharing</option>
+              <option value="reduceRebate">Stop user rebate only</option>
+              <option value="reduce50">Reduce all rates by 50%</option>
+            </select>
+          </div>
+        </PixelCard>
 
         {/* Summary Card */}
         <PixelCard className="mb-8">
