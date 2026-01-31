@@ -1,4 +1,5 @@
 import ReferralLinks from "@/components/app-hub/ReferralLinks";
+import NetworkTree from "@/components/app-hub/NetworkTree";
 import { mockProjects, mockUserData } from "@/lib/mock-data";
 
 export default function ReferralsPage() {
@@ -16,11 +17,15 @@ export default function ReferralsPage() {
         </p>
       </div>
 
-      {/* Referral Links Component */}
-      <div className="max-w-2xl">
+      {/* Referral Links and Network Tree */}
+      <div className="space-y-8 max-w-2xl">
         <ReferralLinks
           projects={mockProjects}
           walletAddress={mockUserData.walletAddress}
+        />
+        <NetworkTree
+          directReferrals={mockUserData.directReferrals}
+          indirectReferrals={mockUserData.indirectReferrals}
         />
       </div>
     </div>
