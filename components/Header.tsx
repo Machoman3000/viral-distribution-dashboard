@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useApp } from "@/contexts/AppContext";
 import GlitchButton from "./GlitchButton";
 
+const navLinkClassName = "text-sm font-[family-name:var(--font-mono)] uppercase tracking-wider text-white/60 hover:text-white focus-visible:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-monad-purple focus-visible:outline-offset-2 transition-colors";
+
 export default function Header() {
   const { walletAddress, isConnected, connectWallet, disconnectWallet } = useApp();
 
@@ -28,23 +30,17 @@ export default function Header() {
 
         {/* Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          <Link
-            href="/register"
-            className="text-sm font-[family-name:var(--font-mono)] uppercase tracking-wider text-white/60 hover:text-white focus-visible:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-monad-purple focus-visible:outline-offset-2 transition-colors"
-          >
+          <Link href="/register" className={navLinkClassName}>
             Register
           </Link>
-          <Link
-            href="/configure"
-            className="text-sm font-[family-name:var(--font-mono)] uppercase tracking-wider text-white/60 hover:text-white focus-visible:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-monad-purple focus-visible:outline-offset-2 transition-colors"
-          >
+          <Link href="/configure" className={navLinkClassName}>
             Configure
           </Link>
-          <Link
-            href="/integrate"
-            className="text-sm font-[family-name:var(--font-mono)] uppercase tracking-wider text-white/60 hover:text-white focus-visible:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-monad-purple focus-visible:outline-offset-2 transition-colors"
-          >
+          <Link href="/integrate" className={navLinkClassName}>
             Integrate
+          </Link>
+          <Link href="/app-hub" className={navLinkClassName}>
+            App Hub
           </Link>
         </nav>
 
