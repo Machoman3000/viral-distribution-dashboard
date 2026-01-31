@@ -1,5 +1,6 @@
 import ReferralLinks from "@/components/app-hub/ReferralLinks";
 import NetworkTree from "@/components/app-hub/NetworkTree";
+import EarningsCard from "@/components/app-hub/EarningsCard";
 import { mockProjects, mockUserData } from "@/lib/mock-data";
 
 export default function ReferralsPage() {
@@ -17,16 +18,28 @@ export default function ReferralsPage() {
         </p>
       </div>
 
-      {/* Referral Links and Network Tree */}
-      <div className="space-y-8 max-w-2xl">
-        <ReferralLinks
-          projects={mockProjects}
-          walletAddress={mockUserData.walletAddress}
-        />
-        <NetworkTree
-          directReferrals={mockUserData.directReferrals}
-          indirectReferrals={mockUserData.indirectReferrals}
-        />
+      {/* 3-column grid layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Left column - Links and Network */}
+        <div className="lg:col-span-2 space-y-8">
+          <ReferralLinks
+            projects={mockProjects}
+            walletAddress={mockUserData.walletAddress}
+          />
+          <NetworkTree
+            directReferrals={mockUserData.directReferrals}
+            indirectReferrals={mockUserData.indirectReferrals}
+          />
+        </div>
+
+        {/* Right column - Earnings */}
+        <div>
+          <EarningsCard
+            asHunter={mockUserData.earnings.asHunter}
+            asManager={mockUserData.earnings.asManager}
+            claimable={mockUserData.earnings.claimable}
+          />
+        </div>
       </div>
     </div>
   );
