@@ -28,23 +28,27 @@ export default function Header() {
 
         {/* Navigation */}
         <nav className="hidden md:flex items-center gap-8">
+          {isConnected && (
+            <Link
+              href="/dashboard"
+              className="text-sm font-[family-name:var(--font-mono)] uppercase tracking-wider text-monad-purple hover:text-white focus-visible:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-monad-purple focus-visible:outline-offset-2 transition-colors"
+            >
+              My Dashboard
+            </Link>
+          )}
           <Link
             href="/register"
             className="text-sm font-[family-name:var(--font-mono)] uppercase tracking-wider text-white/60 hover:text-white focus-visible:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-monad-purple focus-visible:outline-offset-2 transition-colors"
           >
-            Register
+            For Projects
           </Link>
           <Link
-            href="/configure"
+            href="https://docs.monadrefgraph.xyz"
             className="text-sm font-[family-name:var(--font-mono)] uppercase tracking-wider text-white/60 hover:text-white focus-visible:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-monad-purple focus-visible:outline-offset-2 transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            Configure
-          </Link>
-          <Link
-            href="/integrate"
-            className="text-sm font-[family-name:var(--font-mono)] uppercase tracking-wider text-white/60 hover:text-white focus-visible:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-monad-purple focus-visible:outline-offset-2 transition-colors"
-          >
-            Integrate
+            Docs
           </Link>
         </nav>
 
