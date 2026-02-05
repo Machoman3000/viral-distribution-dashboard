@@ -30,8 +30,16 @@ export default function Header() {
 
         {/* Navigation */}
         <nav className="hidden md:flex items-center gap-8">
+          {isConnected && (
+            <Link
+              href="/dashboard"
+              className="text-sm font-[family-name:var(--font-mono)] uppercase tracking-wider text-monad-purple hover:text-white focus-visible:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-monad-purple focus-visible:outline-offset-2 transition-colors"
+            >
+              My Dashboard
+            </Link>
+          )}
           <Link href="/register" className={navLinkClassName}>
-            Register
+            For Projects
           </Link>
           <Link href="/configure" className={navLinkClassName}>
             Configure
@@ -41,6 +49,14 @@ export default function Header() {
           </Link>
           <Link href="/app-hub" className={navLinkClassName}>
             App Hub
+          </Link>
+          <Link
+            href="https://docs.monadrefgraph.xyz"
+            className={navLinkClassName}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Docs
           </Link>
         </nav>
 
